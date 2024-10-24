@@ -1,6 +1,6 @@
 import React from "react";
-import Navigation from "../_components/Navigation";
 
+export const metadata = { title: "Account" };
 export default function page() {
   return (
     <div>
