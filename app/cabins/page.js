@@ -1,8 +1,10 @@
 import CabinCard from "@/app/_components/CabinCard";
+import { getCabins } from "../_lib/data-service";
 
-export default function Page() {
+export default async function Page() {
   // CHANGE
-  const cabins = [];
+  const cabin = await getCabins();
+  console.log(cabin);
 
   return (
     <div>
@@ -18,9 +20,9 @@ export default function Page() {
         to paradise.
       </p>
 
-      {cabins.length > 0 && (
+      {cabin.length > 0 && (
         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-          {cabins.map((cabin) => (
+          {cabin?.map((cabin) => (
             <CabinCard cabin={cabin} key={cabin.id} />
           ))}
         </div>
