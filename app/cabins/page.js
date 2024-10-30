@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
 import Counter from "../_components/Counter";
+import Filter from "../_components/Filter";
 
 export const revalidate = 3600;
 // export const revalidate = 15;
@@ -10,7 +11,9 @@ export const metadata = {
   title: "Cabins",
 };
 
-export default function Page() {
+export default function Page({searchParams}) {
+const filter=searchParams?.capacity??"all"
+
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -24,9 +27,12 @@ export default function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+      <div>
+        <Filter/>
+      </div>
 
       <Suspense fallback={<Spinner />}>
-        <CabinList />
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
